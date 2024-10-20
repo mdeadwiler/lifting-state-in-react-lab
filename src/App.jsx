@@ -1,5 +1,6 @@
 // src/App.jsx
-import BurgerStack from './components/BurgerStack';
+import {useState} from 'react';
+import { BurgerStack } from './components/BurgerStack';
 import {IngredientList} from './components/IngredientList';
 import './App.css';
 
@@ -21,13 +22,19 @@ export const availableIngredients = [
 ];
 
 const App = () => {
+const [stack, setStack] = useState([]);
 
+
+const addToBurger = (newStack) => {
+setStack((prevStack)=> [...prevStack, newStack]);
+}
   return (
     <main>
       <h1>Burger Stacker</h1>
       <section>
-      <IngredientList  availableIngredients={availableIngredients} />
-      <BurgerStack />
+      <IngredientList  availableIngredients={availableIngredients} addToBurger={addToBurger} />
+      
+      <BurgerStack stack={stack} />
       </section>
     </main>
   );

@@ -1,17 +1,19 @@
+import { useState } from 'react';
 
-export const IngredientList = ({availableIngredients}) => {
-    return (
-        <>
-   
-        <ul>
-            {availableIngredients.map((i) => (
-      
-                // eslint-disable-next-line react/jsx-key
-                <li style={{backgroundColor: i.color}}>{i.name}</li>
-            )
-            )}
-           
-        </ul>
-        </>
-    )
-  }
+export const IngredientList = ({ availableIngredients, addToBurger }) => {
+    const [ingredient, setIngredient] = useState([])
+  return (
+    <>
+      <ul>
+        {availableIngredients.map((i, index) => (
+          // eslint-disable-next-line react/jsx-key
+          <li 
+          key={index} 
+          style={{ backgroundColor: i.color }}
+          onClick={() => addToBurger(i)}
+          >{i.name} </li>
+        ))}
+      </ul>
+    </>
+  );
+};
